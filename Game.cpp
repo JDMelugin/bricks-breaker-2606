@@ -80,6 +80,23 @@ void Game::Render() const
 		brick.Draw();
 	}
 
+	if (bricks.empty())
+	{
+		Console::WordWrap(
+			WINDOW_WIDTH / 2 - 15,
+			WINDOW_HEIGHT / 2, 30,
+			"You win! Press R to play again."
+		);
+	}
+
+	if (ball.y_position >= WINDOW_HEIGHT - 1)
+	{
+		Console::WordWrap(
+			WINDOW_WIDTH / 2 - 15,
+			WINDOW_HEIGHT / 2, 30,
+			"You lose! Press R to play again."
+		);
+	}
 	Console::Lock(false);
 }
 
@@ -114,7 +131,7 @@ void Game::CheckCollision()
 	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset
-	// 
+	 
 	if (ball.y_position >= WINDOW_HEIGHT - 1)
 	{
 		ball.moving = false;
